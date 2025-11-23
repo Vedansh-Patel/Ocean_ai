@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Shop Checkout</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .item { margin-bottom: 10px; }
+        label { display: inline-block; width: 150px; }
+        #checkout-form { margin-top: 20px; border-top: 1px solid #ccc; padding-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>E-Shop Checkout</h1>
+    
+    <div id="cart-summary">
+        <h3>Cart Summary</h3>
+        <div class="item">
+            <span>Wireless Headphones</span>
+            <input type="number" id="qty-1" value="1">
+            <button id="add-to-cart-1">Add to Cart</button>
+        </div>
+        <div class="item">
+            <span>Mechanical Keyboard</span>
+            <input type="number" id="qty-2" value="1">
+            <button id="add-to-cart-2">Add to Cart</button>
+        </div>
+        <p>Total: $<span id="total-price">150.00</span></p>
+    </div>
+
+    <div id="discount-section">
+        <label for="discount-code">Discount Code:</label>
+        <input type="text" id="discount-code" placeholder="Enter code">
+        <button id="apply-discount">Apply</button>
+        <span id="discount-msg" style="margin-left: 10px; font-weight: bold;"></span>
+    </div>
+
+    <form id="checkout-form">
+        <h3>User Details</h3>
+        <div>
+            <label>Name: </label><input type="text" id="name" required>
+        </div>
+        <br>
+        <div>
+            <label>Email: </label><input type="email" id="email" required>
+        </div>
+        <span class="error-msg" id="email-error" style="color:red; display:none;">Invalid email</span>
+
+        <h3>Shipping Method</h3>
+        <label><input type="radio" name="shipping" value="standard" checked> Standard (Free)</label><br>
+        <label><input type="radio" name="shipping" value="express"> Express ($10)</label>
+
+        <h3>Payment Method</h3>
+        <label><input type="radio" name="payment" value="cc"> Credit Card</label><br>
+        <label><input type="radio" name="payment" value="paypal"> PayPal</label>
+
+        <br><br>
+        <button type="submit" id="pay-now-btn" style="background-color: green; color: white; padding: 10px 20px; border: none; cursor: pointer;">Pay Now</button>
+    </form>
+
+    <div id="success-message" style="display:none; color: green; font-size: 24px; margin-top: 20px;">
+        Payment Successful!
+    </div>
+
+    
+    <script>
+        
+        document.getElementById('apply-discount').addEventListener('click', function() {
+            const code = document.getElementById('discount-code').value.trim();
+            const msg = document.getElementById('discount-msg');
+            const total = document.getElementById('total-price');
+            
+            if (code === 'SAVE15' || code === 'DISCOUNT10') {
+                msg.style.color = 'green';
+                msg.innerText = "Discount Applied!";
+                total.innerText = "127.50"; 
+            } else {
+                msg.style.color = 'red';
+                msg.innerText = "Invalid Code";
+            }
+        });
+
+        
+        document.getElementById('checkout-form').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            
+            const email = document.getElementById('email').value;
+            if (!email.includes('@')) {
+                document.getElementById('email-error').style.display = 'block';
+                return;
+            }
+
+            
+            document.getElementById('checkout-form').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

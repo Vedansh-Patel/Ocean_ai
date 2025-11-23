@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+streamlit
+requests
+python-dotenv
+python-multipart
+langchain
+langchain-community
+langchain-groq
+langchain-huggingface
+sentence-transformers
+chromadb
+selenium
+webdriver-manager
