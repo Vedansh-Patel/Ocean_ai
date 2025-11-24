@@ -6,7 +6,7 @@ API_URL = "http://localhost:8000"
 
 st.set_page_config(page_title="Autonomous QA Agent", layout="wide")
 st.title("Autonomous QA Agent")
-st.markdown("### Ingest Docs -> Generate Test Cases -> Create Selenium Scripts")
+st.markdown("Ingest Docs -> Generate Test Cases -> Create Selenium Scripts")
 
 
 with st.sidebar:
@@ -89,4 +89,5 @@ if 'test_cases' in st.session_state and st.session_state['test_cases']:
 
 elif 'raw_response' in st.session_state:
     st.warning("Could not parse JSON structured output. Here is the raw response:")
+
     st.write(st.session_state['raw_response'])
